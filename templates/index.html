@@ -32,12 +32,16 @@
 </tbody>
 </table>
 <p>&nbsp;</p>
-<p>Instructions: In the first box, enter a language name as it is listed above. In the second box, enter a number within the given range corresponding to the language you chose for the first box.</p>
+<p>Instructions: Select a language from the dropdown box below. In the box, enter a number within the given range corresponding to the language you chose.</p>
 <p>&nbsp;</p>
-<form method="POST"><input name="text" type="text" /><input type="submit" /></form><form method="POST">
-<p><input name="text" type="text" /><input type="submit" /></p>
-<p>&nbsp;</p>
-</form>
+<form method="POST"><select>
+<option value="English">Select a Language</option>
+<option value="English">English</option>
+<option value="Spanish">Spanish</option>
+n value="Igbo"&gt;Igbo
+<option value="Yoruba">Yoruba</option>
+<option value="Ijaw">Ijaw</option>
+</select><input type="number" placeholder="Enter a number" /></form>
 
 {% if trans['text'] %}
     <p>Output:</p>
