@@ -11,21 +11,26 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+# importing Flask and other modules
+from flask import Flask, request, render_template
 
-from flask import Flask, render_template, request
-
+# Flask constructor
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def translate():
-    
-    # form submission and if there is data to process (POST)
-    if request.method == 'POST':
-        return "ainsley"
-    return render_template('index.html')
+# A decorator used to tell the application
+# which URL is associated function
+@app.route('/', methods =["GET", "POST"])
+def gfg():
+	if request.method == "POST":
+	# getting input with name = fname in HTML form
+	first_name = request.form.get("fname")
+	# getting input with name = lname in HTML form
+	last_name = request.form.get("lname")
+	return "Your name is "+first_name + last_name
+	return render_template("form.html")
 
-
-if __name__ == '__main__':
-    import os
+if __name__=='__main__':
+import os
     app.run(debug=True, threaded=True, host='0.0.0.0',
             port=int(os.environ.get('PORT', 8080)))
+
