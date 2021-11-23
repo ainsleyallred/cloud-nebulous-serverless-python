@@ -16,11 +16,18 @@ from flask import Flask, render_template, request
 import google.auth
 from google.cloud import translate
 
+import array as array
+e = array.array('u', ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+s = array.array('u', ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+ig = array.array('u', ['a', 'b', 'c', 'd', 'e', 'f', 'g', '-', '-', 'h', 'i', 'j', 'k', '-', 'l', 'm', 'n', 'ŋ', '-', 'o', 'ɔ', 'ɵ', 'p', 'r', 's', 't', 'u', 'w', 'y', 'z', '-', '-', '-'])
+y = array.array('u', ['a', 'b', 'd', 'e', 'ẹ', 'f', 'g', '-', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'ọ', 'p', 'r', 's', 'ṣ', 't', 'u', 'w', 'y'])
+ij = array.array('u', ['a', 'B', 'D', 'e', 'é', 'F', 'G', 'H', 'I', 'í', 'K', 'L', 'M', 'N', 'o', 'ò', 'P', 'R', 'S', 'T', 'u', 'ú', 'V', 'W', 'Y', 'Z'])
+
 app = Flask(__name__)
-_, PROJECT_ID = google.auth.default()
-TRANSLATE = translate.TranslationServiceClient()
-PARENT = 'projects/{}'.format(PROJECT_ID)
-SOURCE, TARGET = ('en', 'English'), ('es', 'Spanish')
+#_, PROJECT_ID = google.auth.default()
+#TRANSLATE = translate.TranslationServiceClient()
+#PARENT = 'projects/{}'.format(PROJECT_ID)
+#SOURCE, TARGET = ('en', 'English'), ('es', 'Spanish')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -38,26 +45,58 @@ def translate(gcf_request=None):
 
     # form submission and if there is data to process (POST)
     if local_request.method == 'POST':
-        text = local_request.form['text'].strip()
-        if text:
-            data = {
-                'contents': [text],
-                'parent': PARENT,
-                'target_language_code': TARGET[0],
-            }
-            # handle older call for backwards-compatibility
-            try:
-                rsp = TRANSLATE.translate_text(request=data)
-            except TypeError:
-                rsp = TRANSLATE.translate_text(**data)
-            translated = rsp.translations[0].translated_text
+        language = local_request.form.get("lang")
+        number = local_request.form.get("num")
+        
 
-    # create context & render template
-    context = {
-        'orig':  {'text': text, 'lc': SOURCE},
-        'trans': {'text': translated, 'lc': TARGET},
-    }
-    return render_template('index.html', **context)
+        if language == "English":
+            if number <= 26 and number >= 1:
+                return e[number - 1]
+            else:
+                return "Number entered is out of range."
+
+        elif language == "Spanish":
+            if number <= 27 and number >= 1:
+                return s[number - 1]
+            else:
+                return "Number entered is out of range."
+        elif language == "Igbo":
+            if number == 8:
+                return "gb"
+            elif number == 9:
+                return "gh"
+            elif number == 14:
+                return "kp"
+            elif number == 19:
+                return "ny"
+            elif number == 31:
+                return "gw"
+            elif number == 32:
+                return "kw"
+            elif number == 33:
+                return "nw"
+            elif number <= 33 and b >= 1:
+                return ig[number - 1]
+            else:
+                return "Number entered is out of range."
+        elif language == "Yoruba":
+            if number == 8:
+                return "gb"
+            elif number <= 25 and number >= 1:
+                return y[number - 1]
+            else:
+                return "Number entered is out of range."
+        elif language == "Ijaw":
+            if number <= 26 and number >= 1:
+                return ij[number - 1]
+            else:
+                return "Number entered is out of range."
+        else:
+            return "Language entered is not supported."
+            
+
+    # create render template
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
