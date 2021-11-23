@@ -1,15 +1,46 @@
 <!doctype html>
 <html><head><title>Letter Game</title><body>
 <h2>Letter Game</h2>
+<p>After choosing a language and a number within the ranges below, the program will print out a letter!</p>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 53.4447%; height: 108px;" border="1">
+<tbody>
+<tr style="height: 18px;">
+<td style="width: 31.4463%; text-align: center; height: 18px;">Language</td>
+<td style="width: 15.1727%; text-align: center; height: 18px;">Range</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 31.4463%; height: 18px;"><em>"English"</em></td>
+<td style="width: 15.1727%; height: 18px;">1-26</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 31.4463%; height: 18px;"><em>"Spanish"</em></td>
+<td style="width: 15.1727%; height: 18px;">1-27</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 31.4463%; height: 18px;"><em>"Igbo"</em></td>
+<td style="width: 15.1727%; height: 18px;">1-33</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 31.4463%; height: 18px;"><em>"Yoruba"</em></td>
+<td style="width: 15.1727%; height: 18px;">1-25</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 31.4463%; height: 18px;"><em>"Ijaw"</em></td>
+<td style="width: 15.1727%; height: 18px;">1-26</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Instructions: In the first box, enter a language name as it is listed above. In the second box, enter a number within the given range corresponding to the language you chose for the first box.</p>
+<p>&nbsp;</p>
+<form method="POST"><input name="text" type="text" /><input type="submit" /></form><form method="POST">
+<p><input name="text" type="text" /><input type="submit" /></p>
+<p>&nbsp;</p>
+</form>
 
 {% if trans['text'] %}
-    <h4>Previous number-to-letter transformation</h4>
-    <li><b>Original</b>:   {{ orig['text'] }}  (<i>{{ orig['lc'][0] }}</i>)</li>
-    <li><b>Translated</b>: {{ trans['text'] }} (<i>{{ trans['lc'][0] }}</i>)</li>
+    <p>Output:</p>
 {% endif %}
 
-
-    
-<h4>Enter <i>{{ orig['lc'][1] }}</i> text to translate to <i>{{ trans['lc'][1] }}</i>:</h4>
-<form method="POST"><input name="text"><input type="submit"></form>
-</body></html>
+    </body></html>
