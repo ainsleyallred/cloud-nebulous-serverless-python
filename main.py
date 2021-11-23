@@ -38,10 +38,10 @@ def translate(gcf_request=None):
 
     # form submission and if there is data to process (POST)
     if local_request.method == 'POST':
-        text = local_request.form['text'].strip()
-        if text:
+        lang = local_request.form['lang'].strip()
+        if lang:
             data = {
-                'contents': [text],
+                'contents': [lang],
                 'parent': PARENT,
                 'target_language_code': TARGET[0],
             }
