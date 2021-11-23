@@ -1,46 +1,13 @@
 <!doctype html>
-<html><head><title>Letter Game</title><body>
-<h2>Letter Game</h2>
-<p>After choosing a language and a number within the ranges below, the program will print out a letter!</p>
-<p>&nbsp;</p>
-<table style="border-collapse: collapse; width: 53.4447%; height: 108px;" border="1">
-<tbody>
-<tr style="height: 18px;">
-<td style="width: 31.4463%; text-align: center; height: 18px;">Language</td>
-<td style="width: 15.1727%; text-align: center; height: 18px;">Range</td>
-</tr>
-<tr style="height: 18px;">
-<td style="width: 31.4463%; height: 18px;"><em>"English"</em></td>
-<td style="width: 15.1727%; height: 18px;">1-26</td>
-</tr>
-<tr style="height: 18px;">
-<td style="width: 31.4463%; height: 18px;"><em>"Spanish"</em></td>
-<td style="width: 15.1727%; height: 18px;">1-27</td>
-</tr>
-<tr style="height: 18px;">
-<td style="width: 31.4463%; height: 18px;"><em>"Igbo"</em></td>
-<td style="width: 15.1727%; height: 18px;">1-33</td>
-</tr>
-<tr style="height: 18px;">
-<td style="width: 31.4463%; height: 18px;"><em>"Yoruba"</em></td>
-<td style="width: 15.1727%; height: 18px;">1-25</td>
-</tr>
-<tr style="height: 18px;">
-<td style="width: 31.4463%; height: 18px;"><em>"Ijaw"</em></td>
-<td style="width: 15.1727%; height: 18px;">1-26</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
-<p>Instructions: Select a language from the dropdown box below. In the box, enter a number within the given range corresponding to the language you chose.</p>
-<p>&nbsp;</p>
-<form method="POST"><select>
-<option name="lang" value="English">Select a Language</option>
-<option name="English" value="English">English</option>
-<option name="Spanish" value="Spanish">Spanish</option>
-<option name="Igbo" value="Igbo">Igbo</option>
-<option name="Yoruba" value="Yoruba">Yoruba</option>
-<option name="Ijaw" value="Ijaw">Ijaw</option>
-</select><input name="num" type="number" placeholder="Enter a number" /></form>
+<html><head><title>My Google Translate 1990s</title><body>
+<h2>My Google Translate (1990s edition)</h2>
 
-    </body></html>
+{% if trans['text'] %}
+    <h4>Previous translation</h4>
+    <li><b>Original</b>:   {{ orig['text'] }}  (<i>{{ orig['lc'][0] }}</i>)</li>
+    <li><b>Translated</b>: {{ trans['text'] }} (<i>{{ trans['lc'][0] }}</i>)</li>
+{% endif %}
+
+<h4>Enter <i>{{ orig['lc'][1] }}</i> text to translate to <i>{{ trans['lc'][1] }}</i>:</h4>
+<form method="POST"><input name="text"><input type="submit"></form>
+</body></html>
