@@ -53,11 +53,11 @@ def translate(gcf_request=None):
             translated = rsp.translations[0].translated_text
 
     # create context & render template
-    context = {
-        'orig':  {'text': text, 'lc': SOURCE},
-        'trans': {'text': translated, 'lc': TARGET},
-    }
-    return render_template('index.html', **context)
+    #context = {
+     #   'orig':  {'text': text, 'lc': SOURCE},
+     #   'trans': {'text': translated, 'lc': TARGET},
+    #}
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
