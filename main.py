@@ -38,10 +38,10 @@ def translate(gcf_request=None):
 
     # form submission and if there is data to process (POST)
     if local_request.method == 'POST':
-        lang = local_request.form['lang'].strip()
-        if lang:
+        text = local_request.form['text'].strip()
+        if text:
             data = {
-                'contents': [lang],
+                'contents': [text],
                 'parent': PARENT,
                 'target_language_code': TARGET[0],
             }
@@ -54,8 +54,8 @@ def translate(gcf_request=None):
 
     # create context & render template
     context = {
-       'orig':  {'text': text, 'lc': SOURCE},
-       'trans': {'text': translated, 'lc': TARGET},
+        'orig':  {'text': text, 'lc': SOURCE},
+        'trans': {'text': translated, 'lc': TARGET},
     }
     return render_template('index.html', **context)
 
